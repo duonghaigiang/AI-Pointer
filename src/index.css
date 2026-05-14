@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+@import "tailwindcss";
+
+/* Enable the dark variant */
+@variant dark (&:where(.dark, .dark *));
+
+:root {
+  --card-bg: #ffffff;
+  --card-border: #E5E5E5;
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
+  --bg-color: #F8F9FC;
+  --inverse-bg: #0f172a;
+  --inverse-text: #ffffff;
+}
+
+.dark {
+  --card-bg: #1C2938;
+  --card-border: #2d3748;
+  --text-primary: #ffffff;
+  --text-secondary: #94a3b8;
+  --bg-color: #121212;
+  --inverse-bg: #ffffff;
+  --inverse-text: #0f172a;
+}
+
+@theme {
+  --font-dm: "DM Sans", sans-serif;
+  --font-mono: "Roboto Mono", monospace;
+  --animate-pulse-strong: pulse-strong 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+  @keyframes pulse-strong {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.1; }
+  }
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  background-image: radial-gradient(rgba(26, 26, 26, 0.15) 1px, transparent 1px);
+  background-size: 24px 24px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark body {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+}
+
+.custom-cursor-active, .custom-cursor-active * {
+  cursor: none !important;
+}
+
+@keyframes glow-custom {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+    filter: blur(12px) brightness(1);
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0.8;
+    filter: blur(16px) brightness(1.2);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.5;
+    filter: blur(12px) brightness(1);
+  }
+}
+
+.cursor-glow-layer {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  
+  /* Style 3 Gradient: Cyan -> Blue -> Purple */
+  background: linear-gradient(
+    to top right, 
+    #22d3ee, /* cyan-400 */
+    #3b82f6, /* blue-500 */
+    #a855f7  /* purple-500 */
+  );
+  
+  /* Apply the animation */
+  animation: glow-custom 3s ease-in-out infinite;
+  
+  /* Ensure it doesn't block mouse events */
+  pointer-events: none;
+  z-index: -1;
+  
+  /* Initial offset to align with the cursor tip */
+  left: 7px;
+  top: 7px;
+}
+
+@layer utilities {
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+}

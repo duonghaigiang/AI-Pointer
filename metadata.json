@@ -1,0 +1,8 @@
+{
+  "name": "Remix: AI-Pointer: Create",
+  "description": "An interactive image editing application using Gemini Live to interpret voice and pointing gestures for real-time image manipulation.",
+  "requestFramePermissions": [
+    "microphone"
+  ],
+  "majorCapabilities": []
+}
